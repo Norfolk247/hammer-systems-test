@@ -1,0 +1,16 @@
+import React, {Suspense, lazy} from 'react';
+import {Redirect, Route, Switch} from "react-router-dom";
+import Loading from "../../../../components/shared-components/Loading";
+
+const Clients = ({match}) => {
+    return (
+        <Suspense fallback={<Loading cover='content'/>}>
+            <Switch>
+                <Route path={`${match.url}/list`} component={lazy(() => import(`./list`))} />
+                <Redirect from={`${match.url}`} to={`${match.url}/list`} />
+            </Switch>
+        </Suspense>
+    );
+};
+
+export default Clients;
